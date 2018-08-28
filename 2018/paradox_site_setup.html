@@ -120,6 +120,7 @@ Wayne的博客
     <li><a href="../2018/paradox_site_setup.html#页面组织" class="header">页面组织</a></li>
     <li><a href="../2018/paradox_site_setup.html#片段引入" class="header">片段引入</a></li>
     <li><a href="../2018/paradox_site_setup.html#sbt-site插件的使用" class="header">sbt-site插件的使用</a></li>
+    <li><a href="../2018/paradox_site_setup.html#总结" class="header">总结</a></li>
   </ul></li>
 </ul>
 </nav>
@@ -145,6 +146,7 @@ Wayne的博客
     <li><a href="../2018/paradox_site_setup.html#页面组织" class="header">页面组织</a></li>
     <li><a href="../2018/paradox_site_setup.html#片段引入" class="header">片段引入</a></li>
     <li><a href="../2018/paradox_site_setup.html#sbt-site插件的使用" class="header">sbt-site插件的使用</a></li>
+    <li><a href="../2018/paradox_site_setup.html#总结" class="header">总结</a></li>
   </ul></li>
 </ul>
 </nav>
@@ -161,21 +163,21 @@ Wayne的博客
 <p>上周我将Paradox引入了自己正在开发的项目里，并且第一次感受到了写文档的乐趣。之后便萌生想法，想要使用Paradox来构建自己的博客。当然，对于博客来说，这个组件并非最好的。但是用来做一些基本的思考记录还是足够的。Paradox最好的归宿是用来做文档网站，结合Github pages，可以轻松地做到版本相关的文档发布。目前基本上Lightbend除了基于<a href="https://www.playframework.com/">Playframework</a>构建的项目是使用早就存在的PlayDocPlugin之外，其他相关的项目都是使用的Paradox来做文档管理，如<a href="https://akka.io">Akka</a>，<a href="https://developer.lightbend.com/docs/alpakka/current/index.html">Alpakka</a>等，尤其是一些小项目，结合Github pages，相当方便。本篇将介绍如何使用Paradox快速构建文档项目。</p>
 <h3><a href="#sbt配置paradox" name="sbt配置paradox" class="anchor"><span class="anchor-link"></span></a>Sbt配置Paradox</h3>
 <p>在<code>project/plugins.sbt</code>中添加插件：</p>
-<pre class="prettyprint"><code class="language-sbt">addSbtPlugin(&quot;com.lightbend.paradox&quot; % &quot;sbt-paradox&quot; % &quot;0.4.0&quot;)</code></pre><a href="https://github.com/WayneWang12/WayneWang12.github.io.git/tree/v0.1/project/plugins.sbt#L3">Full source at GitHub</a>
+<pre class="prettyprint"><code class="language-sbt">addSbtPlugin(&quot;com.lightbend.paradox&quot; % &quot;sbt-paradox&quot; % &quot;0.4.0&quot;)</code></pre><a href="https://github.com/WayneWang12/Waynewang12.github.io/tree/blog/project/plugins.sbt#L3">Full source at GitHub</a>
 <p>在<code>build.sbt</code>中定义项目：</p>
 <pre class="prettyprint"><code class="language-sbt">lazy val docDemo = (project in file(&quot;docs&quot;)).
   enablePlugins(ParadoxPlugin).
   settings(
     name := &quot;Demo Project&quot;,
     paradoxTheme := Some(builtinParadoxTheme(&quot;generic&quot;))
-  )</code></pre><a href="https://github.com/WayneWang12/WayneWang12.github.io.git/tree/v0.1/build.sbt#L44-L49">Full source at GitHub</a>
+  )</code></pre><a href="https://github.com/WayneWang12/Waynewang12.github.io/tree/blog/build.sbt#L45-L50">Full source at GitHub</a>
 <p>之后，你只需要在<code>docs/src/main/paradox</code>中创建index.md文档即可：</p>
 <pre class="prettyprint"><code class="nocode"># 示例文档
 
 本文档由Paradox生成。
 
 ## 这是会出现在右侧的二级标题
-</code></pre><a href="https://github.com/WayneWang12/WayneWang12.github.io.git/tree/v0.1/docs/src/main/paradox/index.md#L2-L7">Full source at GitHub</a>
+</code></pre><a href="https://github.com/WayneWang12/Waynewang12.github.io/tree/blog/docs/src/main/paradox/index.md#L2-L7">Full source at GitHub</a>
 <p>然后执行sbt命令<code>paradox</code>，就能在<code>docs/target/paradox/site/main</code>中找到<code>index.html</code>文件，以及其他css和js文件。之后直接浏览器打开<code>index.html</code>即可:</p>
 <p><img src="docDemoIndex.png" alt="docDemo" /></p>
 <p>如果你拿这个页面对比一下<a href="https://developer.lightbend.com/docs/alpakka/current/">Alphakka</a>的文档样式，你会发现两者几乎完全一样，只是Alphakka多了一个Akka的标志而已。</p>
@@ -189,9 +191,9 @@ Wayne的博客
 * [用途](usage/index.md)
 
 @@@
-</code></pre><a href="https://github.com/WayneWang12/WayneWang12.github.io.git/tree/v0.1/docs/src/main/paradox/index.md#L15-L22">Full source at GitHub</a>
+</code></pre><a href="https://github.com/WayneWang12/Waynewang12.github.io/tree/blog/docs/src/main/paradox/index.md#L15-L22">Full source at GitHub</a>
 <p>这里的页面是一个树状的结构。你可以在后面的<code>setup/index.md</code>中继续使用相同的语法进行页面扩展。但是左侧的页面树默认最多只有两级。而且，如果不做特别处理的话，在当前页面是看不到页面树的。不过你可以通过在页面中添加指令</p>
-<pre class="prettyprint"><code class="nocode">@@toc { depth=1 }</code></pre><a href="https://github.com/WayneWang12/WayneWang12.github.io.git/tree/v0.1/docs/src/main/paradox/index.md#L11">Full source at GitHub</a>
+<pre class="prettyprint"><code class="nocode">@@toc { depth=1 }</code></pre><a href="https://github.com/WayneWang12/Waynewang12.github.io/tree/blog/docs/src/main/paradox/index.md#L11">Full source at GitHub</a>
 <p>如此之后，在当前页面就也能看到页面层次了。其中<code>depth</code>的设置可以改变页面树的级数。</p>
 <p>以此类推，我们就能构建组织出一个文档项目的完整、清晰的结构。</p>
 <h2><a href="#片段引入" name="片段引入" class="anchor"><span class="anchor-link"></span></a>片段引入</h2>
@@ -208,7 +210,7 @@ object HelloApp extends App {
 <p>页面中则是如下格式：</p>
 <pre class="prettyprint"><code class="language-scala">object HelloApp extends App {
   println(&quot;Hello, world!&quot;)
-}</code></pre><a href="https://github.com/WayneWang12/WayneWang12.github.io.git/tree/v0.1/src/main/scala/HelloApp.scala#L3-L5">Full source at GitHub</a>
+}</code></pre><a href="https://github.com/WayneWang12/Waynewang12.github.io/tree/blog/src/main/scala/HelloApp.scala#L3-L5">Full source at GitHub</a>
 <p>注意，不管是什么样的文件，只要文件名、路径对上，Paradox都能帮我们做引入，例如我上面的markdown文档片段就是直接从本<code>docDemo</code>项目的文档中引入进行来的。</p>
 <p>至此，我基本把Paradox里面的主要会用到的内容讲完了。后续如果需要做更多定制化的内容，大家可以直接去看<a href="https://developer.lightbend.com/docs/paradox/current/index.html">官网文档</a>，包括如何使用本博客采用的<a href="https://jonas.github.io/paradox-material-theme/">主题</a>方式</p>
 <p>接下来我们讲如何使用<code>sbt-site</code>插件</p>
@@ -217,20 +219,21 @@ object HelloApp extends App {
 <p>首先还是添加插件。在<code>project/plugins.sbt</code>中添加：</p>
 <pre class="prettyprint"><code class="language-sbt">addSbtPlugin(&quot;com.typesafe.sbt&quot; % &quot;sbt-site&quot; % &quot;1.3.2&quot;)
 
-addSbtPlugin(&quot;com.typesafe.sbt&quot; % &quot;sbt-ghpages&quot; % &quot;0.6.2&quot;)</code></pre><a href="https://github.com/WayneWang12/WayneWang12.github.io.git/tree/v0.1/project/plugins.sbt#L11-L13">Full source at GitHub</a>
+addSbtPlugin(&quot;com.typesafe.sbt&quot; % &quot;sbt-ghpages&quot; % &quot;0.6.2&quot;)</code></pre><a href="https://github.com/WayneWang12/Waynewang12.github.io/tree/blog/project/plugins.sbt#L11-L13">Full source at GitHub</a>
 <p>其中<code>sbt-site</code>是帮助我们打包网站，<code>sbt-ghpages</code>则帮助我们发布到Github的<code>gh-pages</code>分支。</p><div class="callout note "><div class="callout-title">Note</div>
 <p>注意，加入<code>sbt-site</code>插件之后，之前Paradox指引的类似在<code>build.sbt</code>文件中添加到<code>Compile</code>的属性现在要添加到<code>Paradox</code>才能生效，如：</p>
 <pre class="prettyprint"><code class="language-sbt">paradoxProperties in Paradox ++= Map(
+  &quot;github.base_url&quot; -&gt; s&quot;https://github.com/WayneWang12/Waynewang12.github.io/tree/blog&quot;,
   &quot;snip.project.base_dir&quot; -&gt; (baseDirectory in ThisBuild).value.getAbsolutePath
-),</code></pre><a href="https://github.com/WayneWang12/WayneWang12.github.io.git/tree/v0.1/build.sbt#L27-L29">Full source at GitHub</a>
+),</code></pre><a href="https://github.com/WayneWang12/Waynewang12.github.io/tree/blog/build.sbt#L27-L30">Full source at GitHub</a>
 <p>另外，为了使我们的源文件还是在<code>src/main/paradox</code>里面，你需要在项目中进行如下设定：</p>
-<pre class="prettyprint"><code class="language-sbt">sourceDirectory in Paradox := sourceDirectory.value / &quot;main&quot; / &quot;paradox&quot;,</code></pre><a href="https://github.com/WayneWang12/WayneWang12.github.io.git/tree/v0.1/build.sbt#L23">Full source at GitHub</a>
+<pre class="prettyprint"><code class="language-sbt">sourceDirectory in Paradox := sourceDirectory.value / &quot;main&quot; / &quot;paradox&quot;,</code></pre><a href="https://github.com/WayneWang12/Waynewang12.github.io/tree/blog/build.sbt#L23">Full source at GitHub</a>
 <p>否则，默认的源文件夹是<code>src/paradox</code>。</p></div>
 <p>之后，我们需要在<code>build.sbt</code>文件中设置发布文档项目到的目的仓库。例如，本博客的设置为：</p>
 <pre class="prettyprint"><code class="language-sbt">scmInfo := Some(ScmInfo(url(&quot;https://github.com/WayneWang12/WayneWang12.github.io.git&quot;), &quot;git@github.com:WayneWang12/WayneWang12.github.io.git&quot;)),
 git.remoteRepo := scmInfo.value.get.connection,
 name := &quot;Wayne&#39;s Blog&quot;,
-ghpagesBranch := &quot;master&quot;,</code></pre><a href="https://github.com/WayneWang12/WayneWang12.github.io.git/tree/v0.1/build.sbt#L16-L19">Full source at GitHub</a>
+ghpagesBranch := &quot;master&quot;,</code></pre><a href="https://github.com/WayneWang12/Waynewang12.github.io/tree/blog/build.sbt#L16-L19">Full source at GitHub</a>
 <p>注意最后一行的<code>ghpagesBranch := &quot;master&quot;</code>。在Github上形如<code>username.github.io</code>的仓库默认是个人主页的主项目，所以这个项目中无法设置<code>gh-pages</code>这个分支，而必须是<code>master</code>。所以这里我做了改变。但是如果是其他项目的话，则可以不加这一行。例如，假如我有一个<code>sbt-site</code>的项目，在<code>gh-pages</code>分支设置好了以后，我就可以通过<code>http://waynewang12.github.io/sbt-site</code>来访问它了。</p>
 <p>上述设置完成以后，我们接下来需要做一次初始化设置：</p>
 <pre><code>sbt clean make-site                             # &lt;1&gt; Build the site
@@ -248,10 +251,12 @@ git push --force &quot;$origin&quot; master:gh-pages      # &lt;4&gt; Publish th
 <pre class="prettyprint"><code class="language-sbtshell">ghpagesPushSite
 </code></pre>
 <p>就可以发布新内容了。</p>
-<p>怎么样，对于基于sbt构建项目的Scala程序员来说，是不是很简单，很方便？</p>
+<h2><a href="#总结" name="总结" class="anchor"><span class="anchor-link"></span></a>总结</h2>
+<p>怎么样，对于基于sbt构建项目的Scala程序员来说，是不是很简单，很方便？最棒的一点是你可以将编译通过的代码直接引入到文档里面去，之后就算代码做了变更，文档内容也会随之变更，而不会出现代码改了文档没改的尴尬情形。并且因为所有的一切都在IDE里面完成，程序员完全不需要进行场景切换，所以效率会更高，也更有动力去编写文档。</p>
+<p>所以，十分推荐有文档需求的Scala程序员来尝试一下本插件。并且自行琢磨出一套文档和代码一起持续演进的流程，来与大家分享。</p>
 </div>
 <div>
-<a href="https://github.com/WayneWang12/WayneWang12.github.io.git/tree/master/src/main/paradox/2018/paradox_site_setup.md" title="Edit this page" class="md-source-file md-edit">
+<a href="https://github.com/WayneWang12/Waynewang12.github.io/tree/master/src/main/paradox/2018/paradox_site_setup.md" title="Edit this page" class="md-source-file md-edit">
 Edit this page
 </a>
 </div>
