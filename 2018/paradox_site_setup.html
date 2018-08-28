@@ -17,13 +17,13 @@
 
 
 <meta name="description" content="wayne-blog">
-<link rel="shortcut icon" href="favicon.ico">
-<title>Wayne的博客</title>
-<link rel="stylesheet" href="assets/stylesheets/application.7a4cdee3.css">
-<link rel="stylesheet" href="assets/stylesheets/application-palette.792431c1.css">
-<link rel="stylesheet" href="lib/material__tabs/dist/mdc.tabs.min.css">
-<link rel="stylesheet" href="lib/prettify/prettify.css">
-<script src="lib/modernizr/modernizr.min.js"></script>
+<link rel="shortcut icon" href="../favicon.ico">
+<title>使用Paradox构建文档网站 · Wayne的博客</title>
+<link rel="stylesheet" href="../assets/stylesheets/application.7a4cdee3.css">
+<link rel="stylesheet" href="../assets/stylesheets/application-palette.792431c1.css">
+<link rel="stylesheet" href="../lib/material__tabs/dist/mdc.tabs.min.css">
+<link rel="stylesheet" href="../lib/prettify/prettify.css">
+<script src="../lib/modernizr/modernizr.min.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
 <style>
 body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}
@@ -31,7 +31,7 @@ code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="assets/stylesheets/paradox-material-theme.css">
+<link rel="stylesheet" href="../assets/stylesheets/paradox-material-theme.css">
 </head>
 <body
 data-md-color-primary="indigo"
@@ -44,7 +44,7 @@ data-md-color-accent="light-blue"
 <nav class="md-header-nav md-grid">
 <div class="md-flex">
 <div class="md-flex__cell md-flex__cell--shrink">
-<a href="index.html" title="Wayne的博客" class="md-header-nav__button md-logo">
+<a href="../index.html" title="Wayne的博客" class="md-header-nav__button md-logo">
 <i class="md-icon">timeline</i>
 </a>
 </div>
@@ -53,7 +53,12 @@ data-md-color-accent="light-blue"
 </div>
 <div class="md-flex__cell md-flex__cell--stretch">
 <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+<span class="md-header-nav__topic">
 Wayne的博客
+</span>
+<span class="md-header-nav__topic">
+使用Paradox构建文档网站
+</span>
 </div>
 </div>
 <div class="md-flex__cell md-flex__cell--shrink">
@@ -95,23 +100,23 @@ Type to start searching
 <span class="md-nav__button md-logo">
 <i class="md-icon">timeline</i>
 </span>
-<a href="index.html" title="Wayne的博客">
+<a href="../index.html" title="Wayne的博客">
 Wayne的博客
 </a>
 </label>
 <ul>
-  <li><a href="2018/index.html" class="page">2018年8月</a>
+  <li><a href="../2018/index.html" class="page">2018年8月</a>
   <ul>
-    <li><a href="2018/paradox_site_setup.html" class="page">使用Paradox构建文档网站</a></li>
+    <li><a href="../2018/paradox_site_setup.html" class="active page">使用Paradox构建文档网站</a></li>
   </ul></li>
 </ul>
 <nav class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="toc">Table of contents</label>
 <ul>
-  <li><a href="index.html#wayne的博客" class="header">Wayne的博客</a>
+  <li><a href="../2018/paradox_site_setup.html#使用paradox构建文档网站" class="header">使用Paradox构建文档网站</a>
   <ul>
-    <li><a href="index.html#简介" class="header">简介</a></li>
-    <li><a href="index.html#目录" class="header">目录</a></li>
+    <li><a href="../2018/paradox_site_setup.html#lightbend-paradox简介" class="header">Lightbend Paradox简介</a></li>
+    <li><a href="../2018/paradox_site_setup.html#sbt配置paradox" class="header">Sbt配置Paradox</a></li>
   </ul></li>
 </ul>
 </nav>
@@ -130,10 +135,10 @@ Wayne的博客
 <nav class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="toc">Table of contents</label>
 <ul>
-  <li><a href="index.html#wayne的博客" class="header">Wayne的博客</a>
+  <li><a href="../2018/paradox_site_setup.html#使用paradox构建文档网站" class="header">使用Paradox构建文档网站</a>
   <ul>
-    <li><a href="index.html#简介" class="header">简介</a></li>
-    <li><a href="index.html#目录" class="header">目录</a></li>
+    <li><a href="../2018/paradox_site_setup.html#lightbend-paradox简介" class="header">Lightbend Paradox简介</a></li>
+    <li><a href="../2018/paradox_site_setup.html#sbt配置paradox" class="header">Sbt配置Paradox</a></li>
   </ul></li>
 </ul>
 </nav>
@@ -144,21 +149,14 @@ Wayne的博客
 <div class="md-content">
 <article class="md-content__inner md-typeset">
 <div class="md-content__searchable">
-<h2><a href="#wayne的博客" name="wayne的博客" class="anchor"><span class="anchor-link"></span></a>Wayne的博客</h2>
-<h2><a href="#简介" name="简介" class="anchor"><span class="anchor-link"></span></a>简介</h2>
-<p>欢迎来到我的博客。本网站使用<a href="https://developer.lightbend.com/docs/paradox/current/index.html">Lightbend Paradox</a>构建，主要内容会与Scala技术栈相关。偶尔也会穿插一些琐话。欢迎关注。</p>
-<h2><a href="#目录" name="目录" class="anchor"><span class="anchor-link"></span></a>目录</h2>
-<div class="toc ">
-<ul>
-  <li><a href="2018/index.html" class="page">2018年8月</a>
-  <ul>
-    <li><a href="2018/paradox_site_setup.html" class="page">使用Paradox构建文档网站</a></li>
-  </ul></li>
-</ul>
-</div>
+<h2><a href="#使用paradox构建文档网站" name="使用paradox构建文档网站" class="anchor"><span class="anchor-link"></span></a>使用Paradox构建文档网站</h2>
+<h3><a href="#lightbend-paradox简介" name="lightbend-paradox简介" class="anchor"><span class="anchor-link"></span></a>Lightbend Paradox简介</h3>
+<p><a href="https://developer.lightbend.com/docs/paradox/current/index.html">Lightbend Paradox</a>是为了软件项目而开发的Markdown文档工具。它提供了开箱即用的基本样式、完善的Github Flavor Markdown语法支持，并且可以通过指定的方法进行代码片段引入。结合<a href="https://www.scala-sbt.org/sbt-site/">sbt-site</a>插件，可以非常轻松地做到在本地一键发布博客的过程，或者是通过Github的Travis CI在commit之后进行自动构建发布。对于Scala程序员来说，Paradox最大的好处在于可以使得代码和文档不被割裂。你的文档可以直接放在项目里面，然后通过特定语法将代码引入到文档中，从而使得文档内容可以在IDE里面随着代码变更直接变动，而不需要上下文切换到浏览器这个新环境中进行编写。</p>
+<p>上周我将Paradox引入了自己正在开发的项目里，并且第一次感受到了写文档的乐趣。之后便萌生想法，想要使用Paradox来构建自己的博客。当然，对于博客来说，这个组件并非最好的。但是用来做一些基本的思考记录还是足够的。Paradox最好的归宿是用来做文档网站，结合Github pages，可以轻松地做到版本相关的文档发布。目前基本上Lightbend除了基于<a href="">Playframework</a>构建的项目是使用早就存在的PlayDocPlugin之外，其他相关的项目都是尽量使用的Paradox来做文档管理，如<a href="https://akka.io">Akka</a>，<a href="https://developer.lightbend.com/docs/alpakka/current/index.html">Alpakka</a>等，尤其是一些小项目。</p>
+<h3><a href="#sbt配置paradox" name="sbt配置paradox" class="anchor"><span class="anchor-link"></span></a>Sbt配置Paradox</h3>
 </div>
 <div>
-<a href="https://github.com/WayneWang12/WayneWang12.github.io.git/tree/master/src/main/paradox/index.md" title="Edit this page" class="md-source-file md-edit">
+<a href="https://github.com/WayneWang12/WayneWang12.github.io.git/tree/master/src/main/paradox/2018/paradox_site_setup.md" title="Edit this page" class="md-source-file md-edit">
 Edit this page
 </a>
 </div>
@@ -174,17 +172,17 @@ Edit this page
 <footer class="md-footer">
 <div class="md-footer-nav">
 <nav class="md-footer-nav__inner md-grid">
-<a href="2018/index.html" title="2018年8月" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+<a href="../2018/index.html" title="2018年8月" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+<div class="md-flex__cell md-flex__cell--shrink">
+<i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+</div>
 <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
 <span class="md-flex__ellipsis">
 <span class="md-footer-nav__direction">
-Next
+Previous
 </span>
 2018年8月
 </span>
-</div>
-<div class="md-flex__cell md-flex__cell--shrink">
-<i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
 </div>
 </a>
 </nav>
@@ -210,11 +208,11 @@ and
 </footer>
 
 </div>
-<script src="assets/javascripts/application.5165553b.js"></script>
-<script src="assets/javascripts/paradox-material-theme.js"></script>
-<script>app.initialize({version:"0.17",url:{base:"."}})</script>
-<script type="text/javascript" src="lib/prettify/prettify.js"></script>
-<script type="text/javascript" src="lib/prettify/lang-scala.js"></script>
+<script src="../assets/javascripts/application.5165553b.js"></script>
+<script src="../assets/javascripts/paradox-material-theme.js"></script>
+<script>app.initialize({version:"0.17",url:{base:"../."}})</script>
+<script type="text/javascript" src="../lib/prettify/prettify.js"></script>
+<script type="text/javascript" src="../lib/prettify/lang-scala.js"></script>
 <script type="text/javascript">
 document.addEventListener("DOMContentLoaded", function(event) {
 window.prettyPrint && prettyPrint();
