@@ -21,7 +21,10 @@ lazy val `wayne-blog` = (project in file("."))
 
     // #source-setting
     sourceDirectory in Paradox := sourceDirectory.value / "main" / "paradox",
-    // #source-setting
+
+    sourceDirectory in Paradox in paradoxTheme := sourceDirectory.value / "main" / "paradox" / "_template",
+
+      // #source-setting
 
     // #paradox
     paradoxProperties in Paradox ++= Map(
@@ -35,6 +38,10 @@ lazy val `wayne-blog` = (project in file("."))
         .withFavicon("favicon.ico")
         .withLogoIcon("timeline")
         .withCopyright("Copyright © Wayne Wang")
+        .withCustomStylesheet("stylesheets/default.css")
+        .withCustomJavaScript("javascripts/gitment.js")
+        .withRepository(uri("https://github.com/WayneWang12/WayneWang12.github.io"))
+        .withGoogleAnalytics("UA-124806176-1")
         .withSocial(
           uri("https://github.com/waynewang12"),
         )

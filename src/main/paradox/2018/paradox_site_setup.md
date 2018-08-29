@@ -1,3 +1,6 @@
+---
+withComments: true
+---
 使用Paradox构建文档网站
 ------------
 
