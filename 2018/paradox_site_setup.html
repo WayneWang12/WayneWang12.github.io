@@ -228,7 +228,7 @@ WayneWang12/WayneWang12.github.io
 <p>如果你拿这个页面对比一下<a href="https://developer.lightbend.com/docs/alpakka/current/">Alphakka</a>的文档样式，你会发现两者几乎完全一样，只是Alphakka多了一个Akka的标志而已。</p>
 <p>Paradox的所有源文件都是使用的<a href="https://daringfireball.net/projects/markdown/syntax">Markdown语法</a>来书写。并且因为与Github结合紧密，所以其采用了<a href="https://help.github.com/articles/basic-writing-and-formatting-syntax/">Github-flavored风格</a>。它背后的Markdown解析器是由<a href="https://github.com/sirthias">Mathias</a>开发的<a href="https://github.com/sirthias/pegdown">Pegdown</a>(这哥们儿最有名的库是后来发展成为<a href="https://github.com/akka/akka-http">Akka-http</a>的<a href="https://github.com/spray/spray">Spray</a>)。当然，虽然这个库已经不再维护了，但是用来做这里的语法解析也是绰绰有余的。</p>
 <p>到现在我们的文档网站已经做好了。之后便需要按照需求来组织一下页面即可。</p>
-<h2><a href="#页面组织" name="页面组织" class="anchor"><span class="anchor-link"></span></a>页面组织</h2>
+<h3><a href="#页面组织" name="页面组织" class="anchor"><span class="anchor-link"></span></a>页面组织</h3>
 <p>所有页面的第一个标题会成为该页面的标题，不管该标题的级别是什么。页面树是通过在Markdown文档中嵌入用<code>@@@ index</code>容器包裹的内容来解析的。格式如下：</p>
 <pre class="prettyprint"><code class="nocode"><br/>@@@ index
 
@@ -241,7 +241,7 @@ WayneWang12/WayneWang12.github.io
 <pre class="prettyprint"><code class="nocode">@@toc { depth=1 }</code></pre><a href="https://github.com/WayneWang12/Waynewang12.github.io/tree/blog/docs/src/main/paradox/index.md#L11">Full source at GitHub</a>
 <p>如此之后，在当前页面就也能看到页面层次了。其中<code>depth</code>的设置可以改变页面树的级数。</p>
 <p>以此类推，我们就能构建组织出一个文档项目的完整、清晰的结构。</p>
-<h2><a href="#片段引入" name="片段引入" class="anchor"><span class="anchor-link"></span></a>片段引入</h2>
+<h3><a href="#片段引入" name="片段引入" class="anchor"><span class="anchor-link"></span></a>片段引入</h3>
 <p>Github的<a href="">Markup</a>有个著名的issue<a href="https://github.com/github/markup/issues/346">#346</a>，其中维护者明确地拒绝了在Github Markdown中添加嵌入文件片段的请求，而不顾几百个+1的请求。这个需求说实话，确实是个刚需，所以Paradox为我们贴心地做了一下实现。通过以下语法，可以将位于<code>src/main/scala/HelloApp.scala</code>里面的包含在<code>// #hello-example</code>中间的代码片段引入本文件：</p>
 <pre class="prettyprint"><code class="nocode">@@snip [HelloApp.scala](../../scala/HelloApp.scala) { #hello-example }
 </code></pre>
@@ -259,7 +259,7 @@ object HelloApp extends App {
 <p>注意，不管是什么样的文件，只要文件名、路径对上，Paradox都能帮我们做引入，例如我上面的markdown文档片段就是直接从本<code>docDemo</code>项目的文档中引入进行来的。</p>
 <p>至此，我基本把Paradox里面的主要会用到的内容讲完了。后续如果需要做更多定制化的内容，大家可以直接去看<a href="https://developer.lightbend.com/docs/paradox/current/index.html">官网文档</a>，包括如何使用本博客采用的<a href="https://jonas.github.io/paradox-material-theme/">主题</a>方式</p>
 <p>接下来我们讲如何使用<code>sbt-site</code>插件</p>
-<h2><a href="#sbt-site插件的使用" name="sbt-site插件的使用" class="anchor"><span class="anchor-link"></span></a>sbt-site插件的使用</h2>
+<h3><a href="#sbt-site插件的使用" name="sbt-site插件的使用" class="anchor"><span class="anchor-link"></span></a>sbt-site插件的使用</h3>
 <p>这些程序员一般都很懒，能代码做掉的事情绝对不手动去做。如果我们只使用<code>paradox</code>的话，我们需要执行sbt命令<code>paradox</code>之后，将生成在<code>target/paradox/site/main</code>里面的文件手动<code>git add</code>和<code>commit</code>到Github上面去，才能发布网站。而为了解决这个多好多步的问题，我们使用<a href="https://www.scala-sbt.org/sbt-site/">sbt-site</a>插件，来让我们只需要执行<code>ghpagesPushSite</code>命令，即可一键发布。</p>
 <p>首先还是添加插件。在<code>project/plugins.sbt</code>中添加：</p>
 <pre class="prettyprint"><code class="language-sbt">addSbtPlugin(&quot;com.typesafe.sbt&quot; % &quot;sbt-site&quot; % &quot;1.3.2&quot;)
@@ -299,7 +299,7 @@ git push --force &quot;$origin&quot; master:gh-pages      # &lt;4&gt; Publish th
 <pre class="prettyprint"><code class="language-sbtshell">ghpagesPushSite
 </code></pre>
 <p>就可以发布新内容了。</p>
-<h2><a href="#总结" name="总结" class="anchor"><span class="anchor-link"></span></a>总结</h2>
+<h3><a href="#总结" name="总结" class="anchor"><span class="anchor-link"></span></a>总结</h3>
 <p>怎么样，对于基于sbt构建项目的Scala程序员来说，是不是很简单，很方便？最棒的一点是你可以将编译通过的代码直接引入到文档里面去，之后就算代码做了变更，文档内容也会随之变更，而不会出现代码改了文档没改的尴尬情形。并且因为所有的一切都在IDE里面完成，程序员完全不需要进行场景切换，所以效率会更高，也更有动力去编写文档。</p>
 <p>所以，十分推荐有文档需求的Scala程序员来尝试一下本插件。并且自行琢磨出一套文档和代码一起持续演进的流程，来与大家分享。</p>
 </div>
