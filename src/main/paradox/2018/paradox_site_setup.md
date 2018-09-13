@@ -1,5 +1,6 @@
 ---
 withComments: true
+withAds: true
 ---
 使用Paradox构建文档网站
 ------------
@@ -35,7 +36,7 @@ Paradox的所有源文件都是使用的[Markdown语法](https://daringfireball.
 
 到现在我们的文档网站已经做好了。之后便需要按照需求来组织一下页面即可。
 
-## 页面组织
+### 页面组织
 
 所有页面的第一个标题会成为该页面的标题，不管该标题的级别是什么。页面树是通过在Markdown文档中嵌入用`@@@ index`容器包裹的内容来解析的。格式如下：
 
@@ -49,7 +50,7 @@ Paradox的所有源文件都是使用的[Markdown语法](https://daringfireball.
 
 以此类推，我们就能构建组织出一个文档项目的完整、清晰的结构。
 
-## 片段引入
+### 片段引入
 
 Github的[Markup]()有个著名的issue[#346](https://github.com/github/markup/issues/346)，其中维护者明确地拒绝了在Github Markdown中添加嵌入文件片段的请求，而不顾几百个+1的请求。这个需求说实话，确实是个刚需，所以Paradox为我们贴心地做了一下实现。通过以下语法，可以将位于`src/main/scala/HelloApp.scala`里面的包含在`// #hello-example`中间的代码片段引入本文件：
 ```text
@@ -75,7 +76,7 @@ object HelloApp extends App {
 
 接下来我们讲如何使用`sbt-site`插件
 
-## sbt-site插件的使用
+### sbt-site插件的使用
 
 这些程序员一般都很懒，能代码做掉的事情绝对不手动去做。如果我们只使用`paradox`的话，我们需要执行sbt命令`paradox`之后，将生成在`target/paradox/site/main`里面的文件手动`git add`和`commit`到Github上面去，才能发布网站。而为了解决这个多好多步的问题，我们使用[sbt-site](https://www.scala-sbt.org/sbt-site/)插件，来让我们只需要执行`ghpagesPushSite`命令，即可一键发布。
 
@@ -131,7 +132,7 @@ ghpagesPushSite
 就可以发布新内容了。
 
 
-## 总结
+### 总结
 
 怎么样，对于基于sbt构建项目的Scala程序员来说，是不是很简单，很方便？最棒的一点是你可以将编译通过的代码直接引入到文档里面去，之后就算代码做了变更，文档内容也会随之变更，而不会出现代码改了文档没改的尴尬情形。并且因为所有的一切都在IDE里面完成，程序员完全不需要进行场景切换，所以效率会更高，也更有动力去编写文档。
 
