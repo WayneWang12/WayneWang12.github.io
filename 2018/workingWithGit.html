@@ -151,6 +151,7 @@ WayneWang12/WayneWang12.github.io
   <ul>
     <li><a href="../2018/paradox_site_setup.html" class="page">使用Paradox构建文档网站</a></li>
     <li><a href="../2018/workingWithGit.html" class="active page">使用Git的一些原则</a></li>
+    <li><a href="../2018/pricinpleOfReactiveStream.html" class="page">反应式流回压的原理</a></li>
   </ul></li>
 </ul>
 <nav class="md-nav md-nav--secondary">
@@ -240,14 +241,12 @@ WayneWang12/WayneWang12.github.io
   <li>
   <p>这个命令会在你的编辑器里面打开一个屏幕，允许你讲述你在每个提交里面做了什么。如果第一个提交的提交信息适用于描述所有提交，那么就可以保留它，否则就将它之前的命令从<code>pick</code>改成<code>reword</code>.</p></li>
   <li>对于剩下的每个提交，将命令从<code>pick</code>改成<code>fixup</code>。这会告诉git将每一个提交合并到之前的提交里面去，并使用之前提交的commit message.</li>
-  <li>保存文件之后退出编辑器。Git会开始rebase的操作。如果你<code>reword</code>了第一个提交，那么git会给你打开一个编辑器来让你填入新的提交信息。如果填完了以后一切正常，那么工作就完成了。但是在将你的变更应用到最新的master分支的时候，可能会发生冲突，那么这个时候你就需要解决冲突，然后运行命令：
-    <pre><code>git rebase --continue
+  <li>保存文件之后退出编辑器。Git会开始rebase的操作。如果你<code>reword</code>了第一个提交，那么git会给你打开一个编辑器来让你填入新的提交信息。如果填完了以后一切正常，那么工作就完成了。但是在将你的变更应用到最新的master分支的时候，可能会发生冲突，那么这个时候你就需要解决冲突，然后运行命令：<code>git rebase --continue</code>。如果含有冲突的变更很多，那么也许这个步骤需要被重复很多次。</li>
+  <li>好了，现在你应该已经rebase好了，这个时候就要推送你的所有变更了。如果你在squash之前已经提交过了分支（包含你已经创建了pull request的场景），那么你就需要做一个强制推送。可以通过如下命令来完成：
+    <pre><code>git push yourremote yourbranch --force
 </code></pre>
   </li>
 </ol>
-<p>如果含有冲突的变更很多，那么也许这个步骤需要被重复很多次。 6. 好了，现在你应该已经rebase好了，这个时候就要推送你的所有变更了。如果你在squash之前已经提交过了分支（包含你已经创建了pull request的场景），那么你就需要做一个强制推送。可以通过如下命令来完成：</p>
-<pre><code>    git push yourremote yourbranch --force
-</code></pre>
 <h3><a href="#响应评审意见或者构建失败" name="响应评审意见或者构建失败" class="anchor"><span class="anchor-link"></span></a>响应评审意见或者构建失败</h3>
 <p>如果你的pull request没有通过CI构建，或者如果我们在代码评审之后告知你需要更新你的pull request，或者如果有任何其他你需要更新你的pull request的理由，那么与其创建一个新的提交，不如改进已有的。这个操作可以通过提交的时候使用<code>--amend</code>标志来完成：</p>
 <pre><code>git commit --amend
@@ -302,6 +301,19 @@ Previous
 </span>
 </div>
 </a>
+<a href="../2018/pricinpleOfReactiveStream.html" title="反应式流回压的原理" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+<div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+<span class="md-flex__ellipsis">
+<span class="md-footer-nav__direction">
+Next
+</span>
+反应式流回压的原理
+</span>
+</div>
+<div class="md-flex__cell md-flex__cell--shrink">
+<i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+</div>
+</a>
 </nav>
 </div>
 <div class="md-footer-meta md-typeset">
@@ -339,7 +351,7 @@ window.prettyPrint && prettyPrint();
 var clientId = 'baf13252e688e141e06b';
 var clientSecret = '5046d2b88f2c31f848a8d8f855f0f25811ff64f4';
 var gitment = new Gitment({
-id: 'Wayne\'s blog',
+id: 'gitlab flow',
 owner: 'WayneWang12',
 repo: 'WayneWang12.github.io',
 oauth: {

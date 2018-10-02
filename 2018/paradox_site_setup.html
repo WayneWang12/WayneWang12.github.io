@@ -151,6 +151,7 @@ WayneWang12/WayneWang12.github.io
   <ul>
     <li><a href="../2018/paradox_site_setup.html" class="active page">使用Paradox构建文档网站</a></li>
     <li><a href="../2018/workingWithGit.html" class="page">使用Git的一些原则</a></li>
+    <li><a href="../2018/pricinpleOfReactiveStream.html" class="page">反应式流回压的原理</a></li>
   </ul></li>
 </ul>
 <nav class="md-nav md-nav--secondary">
@@ -216,7 +217,7 @@ WayneWang12/WayneWang12.github.io
   settings(
     name := &quot;Demo Project&quot;,
     paradoxTheme := Some(builtinParadoxTheme(&quot;generic&quot;))
-  )</code></pre><a href="https://github.com/WayneWang12/Waynewang12.github.io/tree/blog/build.sbt#L50-L55">Full source at GitHub</a>
+  )</code></pre><a href="https://github.com/WayneWang12/Waynewang12.github.io/tree/blog/build.sbt#L51-L56">Full source at GitHub</a>
 <p>之后，你只需要在<code>docs/src/main/paradox</code>中创建index.md文档即可：</p>
 <pre class="prettyprint"><code class="nocode"># 示例文档
 
@@ -270,8 +271,9 @@ addSbtPlugin(&quot;com.typesafe.sbt&quot; % &quot;sbt-ghpages&quot; % &quot;0.6.
 <p>注意，加入<code>sbt-site</code>插件之后，之前Paradox指引的类似在<code>build.sbt</code>文件中添加到<code>Compile</code>的属性现在要添加到<code>Paradox</code>才能生效，如：</p>
 <pre class="prettyprint"><code class="language-sbt">paradoxProperties in Paradox ++= Map(
   &quot;github.base_url&quot; -&gt; s&quot;https://github.com/WayneWang12/Waynewang12.github.io/tree/blog&quot;,
+  &quot;snip.reactive-stream-demo.base_dir&quot; -&gt; s&quot;${(baseDirectory in ThisBuild).value.getAbsolutePath}/reactive-stream-demo/src/test/scala/io/github/waynewang12&quot;,
   &quot;snip.project.base_dir&quot; -&gt; (baseDirectory in ThisBuild).value.getAbsolutePath
-),</code></pre><a href="https://github.com/WayneWang12/Waynewang12.github.io/tree/blog/build.sbt#L30-L33">Full source at GitHub</a>
+),</code></pre><a href="https://github.com/WayneWang12/Waynewang12.github.io/tree/blog/build.sbt#L30-L34">Full source at GitHub</a>
 <p>另外，为了使我们的源文件还是在<code>src/main/paradox</code>里面，你需要在项目中进行如下设定：</p>
 <pre class="prettyprint"><code class="language-sbt">sourceDirectory in Paradox := sourceDirectory.value / &quot;main&quot; / &quot;paradox&quot;,
 
