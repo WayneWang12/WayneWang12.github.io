@@ -2,7 +2,7 @@ name := "wayne-blog"
 
 ThisBuild / version := "0.1"
 
-ThisBuild / scalaVersion := "2.12.6"
+ThisBuild / scalaVersion := "2.12.7"
 
 lazy val `wayne-blog` = (project in file("."))
   .enablePlugins(ParadoxSitePlugin)
@@ -29,6 +29,7 @@ lazy val `wayne-blog` = (project in file("."))
     // #paradox
     paradoxProperties in Paradox ++= Map(
       "github.base_url" -> s"https://github.com/WayneWang12/Waynewang12.github.io/tree/blog",
+      "snip.reactive-stream-demo.base_dir" -> s"${(baseDirectory in ThisBuild).value.getAbsolutePath}/reactive-stream-demo/src/test/scala/io/github/waynewang12",
       "snip.project.base_dir" -> (baseDirectory in ThisBuild).value.getAbsolutePath
     ),
     // #paradox
@@ -54,3 +55,13 @@ lazy val docDemo = (project in file("docs")).
     paradoxTheme := Some(builtinParadoxTheme("generic"))
   )
 // #doc-demo-sbt
+
+val akkaVersion = "2.5.17"
+
+lazy val akkaStreamDemo = (project in file("reactive-stream-demo"))
+  .settings(
+    libraryDependencies ++= Seq(
+      "com.typesafe.akka" %% "akka-stream" % akkaVersion,
+      "org.scalatest" %% "scalatest" % "3.0.5" % Test,
+    )
+  )
