@@ -153,6 +153,7 @@ WayneWang12/WayneWang12.github.io
     <li><a href="../2018/workingWithGit.html" class="page">使用Git的一些原则</a></li>
     <li><a href="../2018/pricinpleOfReactiveStream.html" class="active page">反应式流回压的原理</a></li>
     <li><a href="../2018/middleware_race_preliminary.html" class="page">第四届阿里中间件性能大赛初赛RDP飞起来团队总结</a></li>
+    <li><a href="../2018/jmh.html" class="page">应用JMH测试大型HashMap的性能</a></li>
   </ul></li>
 </ul>
 <nav class="md-nav md-nav--secondary">
@@ -312,7 +313,7 @@ case class WorkRequest(worker: ActorRef, items: Int)
       approximation = approximation + result
       outstandingWork -= 1
       if (outstandingWork == 0 &amp;&amp; workStream.isEmpty) {
-        println(s&quot;final result: $approximation, time spent is ${System.currentTimeMillis() - startTime}ms&quot;)
+        println(s&quot;final result: $approximation, time spent with actor is ${System.currentTimeMillis() - startTime}ms&quot;)
         context.system.terminate()
       }
   }
@@ -386,7 +387,7 @@ import scala.concurrent.duration._
 
 val approximation = Await.result(futureResult, 1.minute)
 
-println(s&quot;final result: $approximation, time ${System.currentTimeMillis() - start}ms&quot;)
+println(s&quot;final result: $approximation, time spent with stream ${System.currentTimeMillis() - start}ms&quot;)
 actorSystem.terminate()</code></pre><a href="https://github.com/WayneWang12/Waynewang12.github.io/tree/blog/reactive-stream-demo/src/test/scala/io/github/waynewang12/ReactiveStreamDemo.scala#L99-L138">Full source at GitHub</a>
 <p>最终打印结果为：</p>
 <blockquote>
