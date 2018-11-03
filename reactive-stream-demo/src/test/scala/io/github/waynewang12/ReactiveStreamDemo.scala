@@ -75,7 +75,7 @@ class ReactiveStreamDemo extends FreeSpec with Matchers {
             approximation = approximation + result
             outstandingWork -= 1
             if (outstandingWork == 0 && workStream.isEmpty) {
-              println(s"final result: $approximation, time spent is ${System.currentTimeMillis() - startTime}ms")
+              println(s"final result: $approximation, time spent with actor is ${System.currentTimeMillis() - startTime}ms")
               context.system.terminate()
             }
         }
@@ -134,7 +134,7 @@ class ReactiveStreamDemo extends FreeSpec with Matchers {
 
       val approximation = Await.result(futureResult, 1.minute)
 
-      println(s"final result: $approximation, time ${System.currentTimeMillis() - start}ms")
+      println(s"final result: $approximation, time spent with stream ${System.currentTimeMillis() - start}ms")
       actorSystem.terminate()
       // #pull-pattern-stream
 
