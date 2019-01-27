@@ -1,6 +1,3 @@
----
-withAds: true
----
 Wayne的博客
 -------
 ## 简介
