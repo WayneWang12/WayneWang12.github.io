@@ -1,6 +1,3 @@
----
-withAds: true
----
 Wayne的博客
 -------
 ## 简介
@@ -15,6 +12,7 @@ Wayne的博客
 
 @@@ index 
 
+* [2019年](2019/index.md)
 * [2018年](2018/index.md)
 
 @@@
