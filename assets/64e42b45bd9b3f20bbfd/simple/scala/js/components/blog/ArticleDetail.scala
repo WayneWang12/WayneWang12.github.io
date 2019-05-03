@@ -10,7 +10,6 @@ import simple.scala.js.utils.gitment.{ Gitalk, GitalkOptions }
 import simple.scala.js.utils.hightlight.hljs
 import simple.scala.js.utils.markdown.Markdown
 
-import scala.collection.mutable
 import scala.scalajs.js
 
 case class ArticleState(

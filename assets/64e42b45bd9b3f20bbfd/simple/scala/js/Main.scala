@@ -55,7 +55,6 @@ object Main {
 
       (emptyRule
         | staticRoute(root, Home) ~> render(BlogComponent())
-        | staticRoute("#", Home) ~> render(BlogComponent())
         | staticRoute("#about", About) ~> render(ResumeComponent())
         | dynamicRouteCT("#article" ~ ("/" ~ string("[a-zA-Z0-9]+")).caseClass[ArticlePage])
           ~> dynRender(ArticleDetail.component))
@@ -63,7 +62,7 @@ object Main {
         .renderWith(layout)
     }
 
-    val router = Router(BaseUrl.fromWindowOrigin_/, config)
+    val router = Router(BaseUrl.fromWindowUrl(_.takeWhile(_ != '#')), config)
 
     router().renderIntoDOM(
       document.getElementById("body"),

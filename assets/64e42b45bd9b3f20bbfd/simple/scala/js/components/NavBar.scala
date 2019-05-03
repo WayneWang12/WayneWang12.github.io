@@ -14,21 +14,23 @@ class NavBar(bs: BackendScope[RouterCtl[Page], Unit]) {
         ^.`class` := "nav-wrapper teal",
         <.div(
           ^.`class` := "container",
-          <.a(^.href := "#",
-            dataTarget := "nav-mobile",
-            ^.`class` := "sidenav-trigger",
-            <.i(^.`class` := "fas fa-bars")),
-          <.ul(^.`class` := "sidenav",
+          <.a(^.href := "/",
+              dataTarget := "nav-mobile",
+              ^.`class` := "sidenav-trigger",
+              <.i(^.`class` := "fas fa-bars")),
+          <.ul(
+            ^.`class` := "sidenav",
             ^.id := "nav-mobile",
             <.li(
               <.a("博客"),
               routerCtl.setOnClick(Home)
             ),
-            <.li(
-              <.a("关于我"),
-              routerCtl.setOnClick(About)
-            )),
-          <.a(^.href := "#", ^.`class` := "brand-logo", "写Scala的老王"),
+//            <.li(
+//              <.a("关于我"),
+//              routerCtl.setOnClick(About)
+//            )
+          ),
+          <.a(^.href := "/", ^.`class` := "brand-logo", "写Scala的老王"),
           <.ul(
             ^.id := "nav-mobile",
             ^.`class` := "right hide-on-med-and-down",
