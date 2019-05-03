@@ -41,8 +41,8 @@ class ArticleDetail(bs: BackendScope[ArticlePage, ArticleState]) {
     bs.state.map { state =>
       state.summary.foreach { summary =>
         val gitalkOptions = new js.Object().asInstanceOf[GitalkOptions]
-        gitalkOptions.client_id = "1d9ab4c847ff3b41e99d"
-        gitalkOptions.client_secret = "2b909e4055761646dc5ddc341a1fae6759c65aa1"
+        gitalkOptions.clientID = "1d9ab4c847ff3b41e99d"
+        gitalkOptions.clientSecret = "2b909e4055761646dc5ddc341a1fae6759c65aa1"
         gitalkOptions.id = summary.fileName
         gitalkOptions.owner = "WayneWang12"
         gitalkOptions.repo = "WayneWang12.github.io"

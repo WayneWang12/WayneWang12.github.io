@@ -14,8 +14,8 @@ trait GitalkOptions extends js.Object {
   var id: String                   = js.native
   var owner: String                = js.native
   var repo: String                 = js.native
-  var client_id: String            = js.native
-  var client_secret: String        = js.native
+  var clientID: String             = js.native
+  var clientSecret: String         = js.native
   var admin: String                = js.native
   var distractionFreeMode: Boolean = js.native
 }
