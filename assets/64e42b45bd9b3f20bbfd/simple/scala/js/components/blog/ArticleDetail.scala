@@ -6,10 +6,11 @@ import japgolly.scalajs.react.vdom.html_<^._
 import scalacss.ScalaCssReact._
 import simple.scala.js.components.ArticlePage
 import simple.scala.js.components.blog.services.PostService
-import simple.scala.js.utils.gitment.{ Gitment, GitmentOptions, OauthOptions }
+import simple.scala.js.utils.gitment.{ Gitalk, GitalkOptions }
 import simple.scala.js.utils.hightlight.hljs
 import simple.scala.js.utils.markdown.Markdown
 
+import scala.collection.mutable
 import scala.scalajs.js
 
 case class ArticleState(
@@ -39,16 +40,15 @@ class ArticleDetail(bs: BackendScope[ArticlePage, ArticleState]) {
   def renderComment =
     bs.state.map { state =>
       state.summary.foreach { summary =>
-        val oauthOption = new js.Object().asInstanceOf[OauthOptions]
-        oauthOption.client_id = "1d9ab4c847ff3b41e99d"
-        oauthOption.client_secret = "2b909e4055761646dc5ddc341a1fae6759c65aa1"
-        val gitmentOptions = new js.Object().asInstanceOf[GitmentOptions]
-        gitmentOptions.id = summary.fileName
-        gitmentOptions.owner = "WayneWang12"
-        gitmentOptions.repo = "WayneWang12.github.io"
-        gitmentOptions.oauth = oauthOption
-        val gitment = new Gitment(gitmentOptions)
-        gitment.render("comment")
+        val gitalkOptions = new js.Object().asInstanceOf[GitalkOptions]
+        gitalkOptions.client_id = "1d9ab4c847ff3b41e99d"
+        gitalkOptions.client_secret = "2b909e4055761646dc5ddc341a1fae6759c65aa1"
+        gitalkOptions.id = summary.fileName
+        gitalkOptions.owner = "WayneWang12"
+        gitalkOptions.repo = "WayneWang12.github.io"
+        gitalkOptions.admin = "WayneWang12"
+        val gitalk = new Gitalk(gitalkOptions)
+        gitalk.render("comment")
       }
     }
 

@@ -19,7 +19,7 @@ import simple.scala.js.components.blog.{ ArticleDetail, ArticleStyle, BlogCompon
 import simple.scala.js.components.resume.ResumeComponent
 import simple.scala.js.components.resume.main.MainStyles
 import simple.scala.js.components.resume.side.SideBarStyles
-import simple.scala.js.utils.gitment.GitmentCss
+import simple.scala.js.utils.gitment.GitalkCss
 import simple.scala.js.utils.hightlight.{ hljs, Github, ScalaCodeJs }
 import simple.scala.js.utils.materialize._
 
@@ -32,7 +32,7 @@ object Main {
   Fontawesome
   hljs
   Github
-  GitmentCss
+  GitalkCss
   hljs.registerLanguage("scala", ScalaCodeJs)
 
   def registerCss() = {
