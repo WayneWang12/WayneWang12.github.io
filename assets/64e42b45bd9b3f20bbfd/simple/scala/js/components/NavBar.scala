@@ -15,19 +15,19 @@ class NavBar(bs: BackendScope[RouterCtl[Page], Unit]) {
         <.div(
           ^.`class` := "container",
           <.a(^.href := "#",
-              dataTarget := "nav-mobile",
-              ^.`class` := "sidenav-trigger",
-              <.i(^.`class` := "material-icons", "menu")),
+            dataTarget := "nav-mobile",
+            ^.`class` := "sidenav-trigger",
+            <.i(^.`class` := "fas fa-bars")),
           <.ul(^.`class` := "sidenav",
-               ^.id := "nav-mobile",
-               <.li(
-                 <.a("博客"),
-                 routerCtl.setOnClick(Home)
-               ),
-               <.li(
-                 <.a("关于我"),
-                 routerCtl.setOnClick(About)
-               )),
+            ^.id := "nav-mobile",
+            <.li(
+              <.a("博客"),
+              routerCtl.setOnClick(Home)
+            ),
+            <.li(
+              <.a("关于我"),
+              routerCtl.setOnClick(About)
+            )),
           <.a(^.href := "#", ^.`class` := "brand-logo", "写Scala的老王"),
           <.ul(
             ^.id := "nav-mobile",
@@ -36,11 +36,11 @@ class NavBar(bs: BackendScope[RouterCtl[Page], Unit]) {
               <.a("博客"),
               routerCtl.setOnClick(Home)
             )
-//            ),
-//            <.li(
-//              <.a("关于我"),
-//              routerCtl.setOnClick(About)
-//            )
+            //            ),
+            //            <.li(
+            //              <.a("关于我"),
+            //              routerCtl.setOnClick(About)
+            //            )
           )
         )
       )
@@ -58,6 +58,9 @@ object NavBar {
 }
 
 sealed trait Page
-case object Home  extends Page
-case class ArticlePage(fileName:String) extends Page
+
+case object Home extends Page
+
+case class ArticlePage(fileName: String) extends Page
+
 case object About extends Page

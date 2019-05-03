@@ -26,7 +26,7 @@ class ArticleStyle extends StyleSheet.Inline {
     )
   )
 
-  val widget:TagMod = style(
+  val widget: TagMod = style(
     margin(30.px, 0.px),
     position.relative,
     minHeight.`0`
@@ -44,7 +44,7 @@ class ArticleStyle extends StyleSheet.Inline {
   )
 
   val ff = fontFace("myFont")(
-    _.src("Helvetica Neue","Hiragino Sans GB","Microsoft YaHei")
+    _.src("Helvetica Neue", "Hiragino Sans GB", "Microsoft YaHei")
   )
 
   val postGloable = style(
@@ -110,7 +110,6 @@ class ArticleStyle extends StyleSheet.Inline {
       wordWrap.normal,
       wordBreak.normal
     ),
-
     unsafeChild("p code")(
       wordWrap.breakWord,
       padding(2.px, 4.px),
@@ -125,7 +124,7 @@ class ArticleStyle extends StyleSheet.Inline {
     )
   )
 
-  val postTitle:TagMod = style(
+  val postTitle: TagMod = style(
     margin(0.75.em),
     fontWeight._300,
     position.relative,
@@ -136,6 +135,12 @@ class ArticleStyle extends StyleSheet.Inline {
       &.hover(
         color(c"#3d85c6")
       )
+    )
+  )
+
+  val comment = style(
+    unsafeChild("nav")(
+      backgroundColor.initial
     )
   )
 

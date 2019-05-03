@@ -6,6 +6,7 @@ import japgolly.scalajs.react.vdom.html_<^._
 import scalacss.ScalaCssReact._
 import simple.scala.js.components.ArticlePage
 import simple.scala.js.components.blog.services.PostService
+import simple.scala.js.utils.gitment.{ Gitment, GitmentOptions, OauthOptions }
 import simple.scala.js.utils.hightlight.hljs
 import simple.scala.js.utils.markdown.Markdown
 
@@ -31,22 +32,27 @@ class ArticleDetail(bs: BackendScope[ArticlePage, ArticleState]) {
       content <- PostService.getContent(page.fileName)
       state   = ArticleState(summary = summary, content = Some(content))
       _       <- bs.modState(_ => state).asAsyncCallback
-    } yield {
-      println(state)
-    }
+    } yield {}
     f.toCallback
   }
 
-  var counter = 0
+  def renderComment =
+    bs.state.map { state =>
+      state.summary.foreach { summary =>
+        val oauthOption = new js.Object().asInstanceOf[OauthOptions]
+        oauthOption.client_id = "1d9ab4c847ff3b41e99d"
+        oauthOption.client_secret = "2b909e4055761646dc5ddc341a1fae6759c65aa1"
+        val gitmentOptions = new js.Object().asInstanceOf[GitmentOptions]
+        gitmentOptions.id = summary.fileName
+        gitmentOptions.owner = "WayneWang12"
+        gitmentOptions.repo = "WayneWang12.github.io"
+        gitmentOptions.oauth = oauthOption
+        val gitment = new Gitment(gitmentOptions)
+        gitment.render("comment")
+      }
+    }
 
-  def getAndInc(state: ArticleState) = {
-    println(state)
-    println(counter)
-    counter += 1
-  }
-
-  def render(state: ArticleState) = {
-    getAndInc(state)
+  def render(state: ArticleState) =
     state.summary.map { summary =>
       val markedContent = Markdown(state.content.get)
       <.div(
@@ -73,10 +79,10 @@ class ArticleDetail(bs: BackendScope[ArticlePage, ArticleState]) {
               ^.dangerouslySetInnerHtml := markedContent,
             )
           )
-        )
+        ),
+        <.div(^.id := "comment", articleStyle.comment)
       )
     }.getOrElse(<.h3("Loading"))
-  }
 }
 
 object ArticleDetail {
@@ -87,7 +93,7 @@ object ArticleDetail {
       .initialState(ArticleState(None, None))
       .renderBackend[ArticleDetail]
       .componentDidMount(pp => pp.backend.updateCodeStyle >> pp.backend.readPage(pp.props))
-      .componentDidUpdate(_.backend.updateCodeStyle)
+      .componentDidUpdate(bs => bs.backend.updateCodeStyle >> bs.backend.renderComment)
       .build
       .apply(articleInfo)
 }
