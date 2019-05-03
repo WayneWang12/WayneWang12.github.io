@@ -32,7 +32,11 @@ class ArticleDetail(bs: BackendScope[ArticlePage, ArticleState]) {
       content <- PostService.getContent(page.fileName)
       state   = ArticleState(summary = summary, content = Some(content))
       _       <- bs.modState(_ => state).asAsyncCallback
-    } yield {}
+    } yield {
+      summary.foreach { sm =>
+        org.scalajs.dom.document.title = sm.title
+      }
+    }
     f.toCallback
   }
 
