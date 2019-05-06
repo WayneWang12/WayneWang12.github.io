@@ -16,7 +16,7 @@ class WeChatQRCode(bs:BackendScope[Unit, Unit]) {
         "公众号"
       ),
       <.img(
-        ^.src := "qrcode.jpg",
+        ^.src := "assets/qrcode.jpg",
         sideContainerStyle.qrCode
       )
     )

@@ -11,7 +11,7 @@ class Contact(bs: BackendScope[Unit, Unit]) {
   private val sideStyles = GlobalRegistry[SideBarStyles].get
 
   val emailAddress = "scweang@hotmail.com"
-  val phoneNumber  = "18610773727"
+  val phoneNumber  = "186********"
   val website      = "waynewang12.me"
 
   def listIcon(prefix: String, icon: String): VdomTagOf[Element] = <.i(
@@ -56,7 +56,7 @@ class Contact(bs: BackendScope[Unit, Unit]) {
         ),
         <.li(
           listIcon("fab", "weixin"),
-          "scweang"
+          "******"
         )
       )
     )

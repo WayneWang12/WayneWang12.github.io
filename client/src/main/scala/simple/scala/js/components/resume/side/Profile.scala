@@ -12,7 +12,7 @@ class Profile(bs: BackendScope[Unit, Unit]) {
     <.div(
       profileStyle.profileContainer,
       <.img(
-        ^.src := "profile.jpg",
+        ^.src := "assets/profile.jpg",
         profileStyle.profile
       ),
       <.h1(
