@@ -86,6 +86,7 @@ val server =
     .enablePlugins(PlayScala, WebScalaJSBundlerPlugin)
     .settings(commonSettings: _*)
     .settings(
+      PlayKeys.devSettings := Seq("play.server.http.port" -> "9527"),
       scalaJSProjects := Seq(client),
       pipelineStages in Assets := Seq(scalaJSPipeline),
       pipelineStages := Seq(digest, gzip),
